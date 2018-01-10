@@ -11,22 +11,9 @@ var hundredThousandairs = dataset.bankBalances.filter(function (element) {
   return element.amount > 100000;
 }
 )
-console.log(hundredThousandairs);
-
-// let bank = hundredThousandairs.map(function (element){
-//   const newPerson = {
-//     bankBalance: Math.ceil(Math.random() * 100000),
-//     account: Math.ceil(Math.random() * 10), 
-//   }
-//   return newPerson
-// })
+// console.log(hundredThousandairs);
 
 
-// const finalUsersList = rawUsers.map(function (element) {
-//   const newUser = {
-//     id: Math.ceil(Math.random() * 1000),
-//     name: element
-//   }
 /*
   DO NOT MUTATE DATA.
 
@@ -44,7 +31,11 @@ console.log(hundredThousandairs);
     }
   assign the resulting new array to `datasetWithRoundedDollar`
 */
-var datasetWithRoundedDollar = null;
+var datasetWithRoundedDollar = dataset.bankBalances.map(function (element) {
+  element.rounded = Math.round(parseFloat(element.amount))
+  return element;
+})
+console.log(datasetWithRoundedDollar);
 
 /*
   DO NOT MUTATE DATA.
