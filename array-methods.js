@@ -32,10 +32,12 @@ var hundredThousandairs = dataset.bankBalances.filter(function (element) {
   assign the resulting new array to `datasetWithRoundedDollar`
 */
 var datasetWithRoundedDollar = dataset.bankBalances.map(function (element) {
-  element.rounded = Math.round(parseFloat(element.amount))
-  return element;
+  const newData = {};
+  Object.assign(newData, element);
+  newData.rounded = Math.round(parseFloat(element.amount))
+  return newData;
 })
-console.log(datasetWithRoundedDollar);
+// console.log(datasetWithRoundedDollar);
 
 /*
   DO NOT MUTATE DATA.
@@ -60,22 +62,40 @@ console.log(datasetWithRoundedDollar);
     }
   assign the resulting new array to `roundedDime`
 */
-var datasetWithRoundedDime = null;
+var datasetWithRoundedDime = dataset.bankBalances.map(function (element) {
+  const newData = {};
+  Object.assign(newData, element);
+  newData.roundedDime = Math.round(parseFloat(element.amount * 10)) / 10;
+  return newData;
+}) 
+
+
 
 // set sumOfBankBalances to be the sum of all value held at `amount` for each bank object
-var sumOfBankBalances = null;
+var arr = dataset.bankBalances.map(function (element) {
+  return parseFloat(element.amount);
+})
 
-/*
-  from each of the following states:
-    Wisconsin
-    Illinois
-    Wyoming
-    Ohio
-    Georgia
-    Delaware
-  take each `amount` and add 18.9% interest to it rounded to the nearest cent
-  and then sum it all up into one value saved to `sumOfInterests`
- */
+var sumOfBankBalances = arr.reduce(function (prev, curr) {
+let num = prev + curr;
+return Math.round (num * 100) / 100;
+
+})
+
+
+
+console.log('total amount ', sumOfBankBalances);
+
+// for all states not in the following states:
+//       Wisconsin              Wisconsin
+//       Illinois              Illinois
+//       Wyoming              Wyoming
+//       Ohio              Ohio
+//       Georgia              Georgia
+//       Delaware              Delaware
+//   sum the amount for each state (stateSum)
+//   take each `stateSum` and add 18.9% interest to it
+//   sum only `stateSum` who's interest only values is greater than 50,000 and save it to `sumOfHighInterests`
 var sumOfInterests = null;
 
 /*
